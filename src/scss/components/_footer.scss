@@ -1,0 +1,86 @@
+.footer {
+  background-color: $color-white-4;
+
+  &__info {
+    padding: 2.5rem 0;
+
+    &__title {
+      font-weight: 700;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    &__content {
+      @include flex(flex-start, center);
+      flex-direction: column;
+      text-transform: capitalize;
+
+      & > * ~ * {
+        margin-top: 5px;
+      }
+    }
+  }
+
+  &__copies {
+    width: 100%;
+    @include flex(center, space-between);
+    padding: 1.5rem 0;
+    border-top: 1px solid rgb(221, 221, 221) !important;
+
+    @include tablet {
+      @include flex(center, center);
+      flex-direction: column-reverse;
+    }
+
+    &__left {
+      @include flex(center, center);
+
+      @include tablet {
+        flex-direction: column;
+      }
+
+      ul {
+        @include flex(center, unset);
+      }
+
+      li {
+        @include flex(center, center);
+      }
+
+      & > * ~ * {
+        margin-left: 10px;
+      }
+
+      li ~ li {
+        margin-left: 10px;
+      }
+    }
+
+    &__right {
+      @include flex(center, unset);
+
+      &__setting {
+        margin-right: 50px;
+        @include flex(center, unset);
+
+        & > * ~ * {
+          margin-left: 30px;
+        }
+
+        & > a > i {
+          margin-right: 10px;
+        }
+      }
+
+      &__social {
+        i {
+          font-size: 30px;
+        }
+
+        & > * ~ * {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+}

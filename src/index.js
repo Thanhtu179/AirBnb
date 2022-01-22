@@ -1,5 +1,4 @@
 
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/configStore';
@@ -8,7 +7,9 @@ import store from './redux/configStore';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
+import "./assets/boxicons-2.0.7/css/boxicons.min.css"
 import 'antd/dist/antd.less';
+import "./scss/index.scss";
 
 
 ReactDOM.render(

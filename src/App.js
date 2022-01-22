@@ -1,11 +1,11 @@
 
-import './App.scss';
+
 import { createBrowserHistory } from "history";
 import { Route, Switch, Router } from "react-router-dom";
 
-import Home from './pages/home/Home';
-import RoomList from './pages/room-list/RoomList';
-import Room from "./pages/room/Room";
+import Home from './pages/Home';
+import RoomList from './pages/RoomList';
+import Room from "./pages/Room";
 
 export const history = createBrowserHistory();
 
