@@ -1,0 +1,98 @@
+.header {
+  width: 100%;
+  height: $header-height;
+  box-shadow: $box-shadow-1;
+  background-color: $bg-white-0;
+  transition: height 0.3s ease, background-color 0.3s ease;
+
+  @include tablet {
+    display: none;
+  }
+
+  &__logo {
+    width: 120px;
+
+    @include desktop {
+      display: none;
+    }
+  }
+
+  &__logo--desktop {
+    width: 60px;
+    display: none;
+
+    @include desktop {
+      display: block;
+    }
+  }
+
+  &__wrap {
+    height: 100%;
+    @include flex(center, space-between);
+  }
+
+  &__search {
+    @include flex(center, unset);
+    position: relative;
+    padding: 13px 25px;
+    border: 1px solid $bg-white-2;
+    border-radius: $border-radius-1;
+    width: 300px;
+    max-width: 300px;
+    cursor: pointer;
+    box-shadow: $box-shadow;
+    transition: box-shadow 0.3s ease;
+
+    &__content {
+      @include flex(center, unset);
+      font-weight: 600;
+      font-size: 1rem;
+
+      p {
+        margin-bottom: 0;
+      }
+    }
+
+    &__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: $color-primary;
+      @include flex(center, center);
+      position: absolute;
+      right: 7px;
+      top: 6px;
+
+      & > i {
+        font-weight: 600;
+        color: $bg-white-0;
+      }
+    }
+
+    &:hover {
+      box-shadow: $box-shadow-1;
+    }
+  }
+
+  &__nav {
+    @include flex(center, unset);
+
+    & > * ~ * {
+      margin-left: 5px;
+    }
+
+    &__item {
+      a {
+        padding: 0.8rem;
+        border-radius: $border-radius-1;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+      }
+
+      & > a:hover {
+        color: unset !important;
+        background-color: $bg-white-4;
+      }
+    }
+  }
+}

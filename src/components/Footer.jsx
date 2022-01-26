@@ -49,7 +49,7 @@ const Footer = () => {
     <div className="footer">
       <div className="container">
         <div className="footer__info">
-          <Grid col={4} mdCol={2} smCol={1} gap={30}>
+          <Grid col={4} lgCol={2} mdCol={1} gap={30}>
             <div>
               <div className="footer__info__title">Giới thiệu</div>
               <div className="footer__info__content">

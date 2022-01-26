@@ -1,5 +1,6 @@
 $box-shadow: 1px solid rgba(0, 0, 0, 0.08);
 $box-shadow-1: 0 2px 4px rgba(0, 0, 0, 0.18);
+$transition-cubic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
 $color-primary: #ff385c;
 
@@ -7,41 +8,47 @@ $color-dark-1: #000000;
 $color-dark-2: #222222;
 $color-dark-3: #717171;
 
-$color-white-1: #b0b0b0;
-$color-white-2: #dddddd;
-$color-white-3: #ebebeb;
-$color-white-4: #f7f7f7;
-$color-white-0: #ffffff;
+$bg-white-1: #b0b0b0;
+$bg-white-2: #dddddd;
+$bg-white-3: #ebebeb;
+$bg-white-4: #f7f7f7;
+$bg-white-5: #fafafb;
+$bg-white-0: #ffffff;
+
+$txt-white-0: #ffffff;
+$txt-white-1: #b0b0b0;
+$txt-white-2: #717171;
+$txt-dark-0: #222222;
+$txt-yellow: #e07912;
 
 $color-red-1: #c13515;
 $color-red-2: #b32505;
 $color-red-3: #92174d;
-$color-yellow: #e07912;
 
-$color-green: #008a05;
-$color-blue: #428bff;
-$color-purple: #460479;
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 992px;
+$screen-xl: 1200px;
 
-$color-gradient-1: linear-gradient(
+$header-height: 6rem;
+$header-shrink-height: 5rem;
+$border-radius-1: 30px;
+$border-radius: 8px;
+
+$numbers: (0, 1, 2, 3, 4, 5, 6, 7, 8);
+
+$linear-gradient-1: linear-gradient(
   to right,
   #e61e4d 0%,
   #e31c5f 50%,
   #d70466 100%
 );
-$color-gradient-3: linear-gradient(
-  to right,
-  #bd1e59 0%,
-  #92174d 50%,
-  #861453 100%
+$linear-gradient-2: radial-gradient(
+  circle at center,
+  #ff385c 0%,
+  #e61e4d 27.5%,
+  #e31c5f 40%,
+  #d70466 57.5%,
+  #bd1e59 75%,
+  #bd1e59 100%
 );
-$color-gradient-2: linear-gradient(
-  to right,
-  #59086e 0%,
-  #460479 50%,
-  #440589 100%
-);
-
-$mobile-width: 600px;
-$tablet-width: 1024px;
-
-$numbers: (0, 1, 2, 3, 4, 5, 6, 7, 8);

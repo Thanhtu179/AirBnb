@@ -1,0 +1,44 @@
+.user-control {
+  @include flex(center, space-between);
+  padding: 5px 10px;
+  border: 1px solid $bg-white-2;
+  border-radius: $border-radius-1;
+  box-shadow: $box-shadow;
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+
+  &__image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  &__icon {
+    margin-right: 10px;
+    @include flex(center, center);
+
+    i {
+      font-size: 1.5rem;
+    }
+  }
+
+  &:hover {
+    box-shadow: $box-shadow-1;
+  }
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+
+  &:hover {
+    background-color: $bg-white-5;
+  }
+
+  & > i {
+    margin-right: 20px;
+    font-size: 1.5rem;
+  }
+}

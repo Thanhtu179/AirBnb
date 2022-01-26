@@ -5,7 +5,8 @@ import Footer from "../components/Footer";
 import Helmet from "../components/Helmet";
 import Section, { SectionTitle, SectionBody } from "../components/Section";
 import Grid from "../components/Grid";
-import CardRecentLocation from "../components/CardRecentLocation";
+import CardItem from "../components/CardItem";
+import CardRoom from "../components/CardRoom";
 
 const recentLocationList = [
   {
@@ -77,9 +78,14 @@ const Home = () => {
       <Section>
         <SectionTitle>Khám phá những điểm đến gần đây</SectionTitle>
         <SectionBody>
-          <Grid col={4} mdCol={2} smCol={1} gap={20}>
+          <Grid col={4} lgCol={2} mdCol={1} gap={20}>
             {recentLocationList.map((item, index) => (
-              <CardRecentLocation item={item} key={index} />
+              <CardItem
+                img={item.img}
+                title={item.displayName}
+                description={item.description}
+                key={index}
+              />
             ))}
           </Grid>
         </SectionBody>
@@ -105,6 +111,7 @@ const Home = () => {
         </SectionBody>
       </Section>
       {/* End where Section */}
+      <CardRoom />
       <Footer />
     </Helmet>
   );

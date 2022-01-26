@@ -1,0 +1,565 @@
+.room {
+  &__header {
+    width: 100%;
+    height: 80px;
+    @include flex(center, space-between);
+
+    &__left {
+      @include flex(center, unset);
+      cursor: pointer;
+
+      & > * ~ * {
+        margin-left: 5px;
+      }
+
+      & > i {
+        font-size: 2rem;
+      }
+
+      span {
+        font-weight: 700;
+        font-size: 1rem;
+      }
+    }
+
+    &__right {
+      @include flex(center, unset);
+
+      &__item {
+        padding: 8px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        @include flex(center, center);
+
+        &:hover {
+          background-color: $bg-white-4;
+        }
+
+        & > i {
+          margin-right: 10px;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  &__detail {
+    padding-top: 3rem;
+
+    @include tablet {
+      padding-top: 0;
+    }
+
+    &__content {
+      @include flex(center, space-between);
+      margin-top: 10px;
+
+      &__rate-location {
+        @include flex(center, unset);
+
+        & > * ~ * {
+          margin-left: 10px;
+        }
+      }
+
+      &__action {
+        @include flex(center, flex-end);
+        font-weight: 600;
+
+        @include tablet {
+          display: none;
+        }
+
+        & > * ~ * {
+          margin-left: 10px;
+        }
+
+        &__item {
+          padding: 8px;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          @include flex(center, center);
+
+          &:hover {
+            background-color: $bg-white-4;
+          }
+
+          & > i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+
+    &__images {
+      margin-top: 20px;
+      display: grid;
+      width: 100%;
+      height: 500px;
+      gap: 10px;
+      grid-template-columns: repeat(4, 1fr);
+      border-radius: $border-radius-1;
+      overflow: hidden;
+      position: relative;
+
+      &__item {
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative;
+        cursor: pointer;
+
+        &::before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          transition: background-color 0.3s ease;
+        }
+
+        &:hover::before {
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        &:nth-child(1) {
+          grid-row: 1 / span 2;
+          grid-column: 1 / span 2;
+
+          @include tablet {
+            grid-row: 1 / span 4;
+            grid-column: 1 / span 4;
+          }
+        }
+
+        @include tablet {
+          &:nth-child(2),
+          &:nth-child(3),
+          &:nth-child(4),
+          &:nth-child(5) {
+            display: none;
+          }
+        }
+      }
+
+      &__item-btn {
+        padding: 7px 15px;
+        background-color: $bg-white-4;
+        position: absolute;
+        bottom: 5%;
+        right: 2%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        border: 1px solid $color-dark-1;
+        cursor: pointer;
+
+        @include tablet {
+          display: none;
+        }
+
+        & > i {
+          margin-right: 5px;
+          font-size: 1.5rem;
+        }
+
+        & > p {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  &__info {
+    display: flex;
+
+    &__left {
+      width: 55%;
+
+      @include desktop {
+        width: 100%;
+      }
+
+      .applications {
+        display: block !important;
+      }
+
+      .info__title {
+        @include flex(flex-start, space-between);
+        padding: 2rem 0;
+
+        &__left {
+          flex-grow: 1;
+        }
+
+        &__right {
+          &__img {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            overflow: hidden;
+          }
+        }
+      }
+
+      .info__description {
+        p {
+          line-height: 24px;
+          letter-spacing: 1px;
+        }
+
+        button {
+          background-color: $bg-white-0;
+          outline: none;
+          border: none;
+          font-size: 1rem;
+          font-weight: 600;
+          margin-top: 20px;
+          margin-right: 5px;
+          cursor: pointer;
+          @include flex(center, center);
+
+          &:hover {
+            color: $color-primary;
+          }
+
+          i {
+            font-size: 1.2rem;
+          }
+        }
+      }
+
+      .info__service {
+        &__item {
+          margin-bottom: 10px;
+          font-weight: 500;
+          font-size: 1.1rem;
+          @include flex(center, unset);
+
+          & > i {
+            margin-right: 10px;
+            font-size: 2rem;
+          }
+        }
+
+        &__btn {
+          margin-top: 2rem;
+        }
+      }
+    }
+
+    &__right {
+      flex-grow: 1;
+      position: relative;
+
+      @include desktop {
+        display: none;
+      }
+
+      .book-ticket {
+        position: sticky;
+        top: 15%;
+        left: 0;
+        right: 0;
+        width: 70%;
+        margin: 6rem auto 0;
+        padding: 1.5rem;
+        border-radius: 20px;
+        box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+        text-align: center;
+        border: 1px solid $bg-white-2;
+
+        &__title {
+          margin-bottom: 1.5rem;
+          @include flex(center, space-between);
+
+          &__price {
+            font-size: 1.2rem;
+            span {
+              font-weight: 600;
+              font-size: 1.5rem;
+            }
+
+            p {
+              margin-bottom: 0;
+            }
+
+            @include tablet {
+              margin-top: 10px;
+            }
+          }
+
+          &__rate {
+            font-size: 1.2rem;
+          }
+        }
+
+        &__info {
+          border-radius: $border-radius;
+          border: 1px solid $bg-white-1;
+          margin-bottom: 2.5rem;
+
+          &__date {
+            display: flex;
+            height: 60px;
+            cursor: pointer;
+
+            .date-customer {
+              width: 50%;
+              position: relative;
+
+              .label {
+                position: absolute;
+                top: 5px;
+                left: 10px;
+                z-index: 2;
+                font-size: 0.6rem;
+                text-transform: uppercase;
+                font-weight: 700;
+              }
+
+              .date-input {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                padding: 26px 12px 10px;
+                z-index: 1;
+                cursor: pointer !important;
+                outline: none !important;
+              }
+            }
+
+            .check-out-date .date-input {
+              border-top-right-radius: $border-radius;
+            }
+
+            .check-in-date .date-input {
+              border-top-left-radius: $border-radius;
+            }
+          }
+
+          &__number-user {
+            position: relative;
+            z-index: 1;
+
+            &__toggle {
+              @include flex(center, space-between);
+              padding: 10px;
+              border-bottom-left-radius: $border-radius;
+              border-bottom-right-radius: $border-radius;
+              border: 1px solid $bg-white-1;
+              width: 100%;
+              background-color: $bg-white-0;
+              position: relative;
+              cursor: pointer;
+
+              h5 {
+                margin: 0;
+                text-align: left;
+                text-transform: uppercase;
+                font-size: 0.6rem;
+                font-weight: 700;
+              }
+
+              p {
+                margin-bottom: 0;
+              }
+
+              i {
+                font-size: 2rem;
+              }
+            }
+
+            &__content {
+              position: absolute;
+              top: calc(100% + 5px);
+              right: 0;
+              width: 100%;
+              background-color: $bg-white-0;
+              box-shadow: $box-shadow-1;
+              overflow: hidden;
+              transform-origin: top;
+              transform: scale(0);
+              transition: transform 0.3s ease 0s;
+              z-index: 1;
+              padding: 2rem 1.5rem;
+
+              &.active {
+                transform: scale(1);
+                transition: transform 0.5s $transition-cubic;
+              }
+
+              &__menus {
+                margin-bottom: 20px;
+
+                & > * ~ * {
+                  margin-top: 2rem;
+                }
+
+                &__item {
+                  @include flex(center, space-between);
+
+                  // & > * ~ * {
+                  //   margin-top: 3rem;
+                  // }
+
+                  h4 {
+                    text-align: left;
+                    margin-bottom: 0;
+                    font-weight: 700;
+                  }
+
+                  p {
+                    margin-bottom: 0;
+                    text-align: left;
+                  }
+
+                  &__btns {
+                    @include flex(center, unset);
+                    height: 100%;
+
+                    & > * ~ * {
+                      margin-left: 10px;
+                    }
+
+                    button {
+                      width: 35px;
+                      height: 35px;
+                      border-radius: 50%;
+                      line-height: 15px;
+                      text-align: center;
+                      background-color: $bg-white-0;
+                      cursor: pointer;
+                      border: 1px solid $bg-white-2;
+                    }
+
+                    button:hover,
+                    button:focus {
+                      border: 1px solid $color-dark-2;
+                    }
+                  }
+                }
+              }
+
+              &__btn {
+                text-align: right;
+                button {
+                  background-color: $bg-white-0;
+                  font-size: 1.2rem;
+                  font-weight: 600;
+                  cursor: pointer;
+                  border: none;
+                }
+
+                button:hover {
+                  color: $color-primary;
+                }
+              }
+            }
+          }
+        }
+
+        &__btn {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &__rate {
+    .rate {
+      font-size: 1.5rem !important;
+    }
+
+    &__content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+
+      @include desktop {
+        display: none;
+      }
+
+      &__item {
+        @include flex(center, unset);
+
+        &__title {
+          font-weight: 500;
+          margin-right: 50px;
+          width: 40%;
+          font-size: 1.1rem;
+        }
+
+        &__progress {
+          flex-grow: 1;
+          @include flex(center, unset);
+
+          p {
+            width: 250px;
+            height: 5px;
+            background-color: $bg-white-1;
+            display: block;
+            margin-right: 5px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-right: 1.5rem;
+            position: relative;
+
+            & > span {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 100%;
+              background-color: $color-primary;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__comments {
+    @include desktop {
+      display: none;
+    }
+
+    &__item {
+      width: 80%;
+      margin-bottom: 3rem;
+    }
+
+    &__btn {
+      margin-top: 3rem;
+    }
+  }
+
+  &__comments--desktop {
+    display: none;
+
+    @include desktop {
+      display: block;
+    }
+
+    &__item {
+      width: 70%;
+      padding: 1.5rem 2rem;
+      border: 1px solid $bg-white-2;
+      border-radius: $border-radius-1;
+    }
+
+    &__btn {
+      margin-top: 3rem;
+    }
+  }
+}

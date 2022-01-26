@@ -13,7 +13,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
   color: #484848;
-  background-color: $color-white-0;
+  background-color: $bg-white-0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -40,9 +40,21 @@ input {
   outline: 0;
 }
 
+p {
+  margin-bottom: 0;
+}
+
 @each $val in $numbers {
   .grid-col-#{$val} {
     grid-template-columns: repeat($val, 1fr);
+  }
+}
+
+@each $val in $numbers {
+  .grid-col-lg-#{$val} {
+    @include desktop {
+      grid-template-columns: repeat($val, 1fr);
+    }
   }
 }
 

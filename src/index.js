@@ -8,7 +8,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
 import "./assets/boxicons-2.0.7/css/boxicons.min.css"
-import 'antd/dist/antd.less';
+import 'antd/dist/antd.css';
 import "./scss/index.scss";
 
 

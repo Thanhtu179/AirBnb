@@ -1,7 +1,11 @@
 import React from "react";
 
 const Section = (props) => {
-  return <div className="section container">{props.children}</div>;
+  return (
+    <div className={`section ${props.borderTop ? "border-top" : ""}`}>
+      {props.children}
+    </div>
+  );
 };
 
 export const SectionTitle = (props) => {
