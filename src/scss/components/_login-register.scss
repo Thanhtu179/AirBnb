@@ -1,0 +1,349 @@
+.login-register {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+
+  .btn-back-home {
+    position: relative;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: max-content;
+    font-weight: 600;
+
+    @include flex(center, unset);
+
+    & > i {
+      margin-right: 10px;
+      font-size: 1.5rem;
+    }
+
+    &:hover {
+      color: $color-primary !important;
+    }
+  }
+
+  &.sign-in > .btn-back-home {
+    color: $txt-white-0;
+  }
+
+  &.sign-up > .btn-back-home {
+    color: $color-dark-1;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+  }
+
+  .col {
+    width: 50%;
+  }
+
+  .align-items-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 28rem;
+}
+
+.form {
+  padding: 1rem;
+  background-color: $bg-white-0;
+  border-radius: 1.5rem;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  /* transform: scale(0); */
+  transition: 0.5s ease-in-out;
+  transition-delay: 1s;
+}
+
+.input-group__custom {
+  position: relative;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.input-group__custom i {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: $color-dark-4;
+}
+
+.input-group__custom input {
+  width: 100%;
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  background-color: $bg-white-6;
+  border-radius: 0.5rem;
+  border: 0.125rem solid $bg-white-0;
+  outline: none;
+}
+
+.input-group__custom input:focus {
+  border: 0.125rem solid $color-green-0;
+}
+
+.form button {
+  cursor: pointer;
+  width: 100%;
+  padding: 0.6rem 0;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: $color-green-0;
+  color: $bg-white-0;
+  font-size: 1.2rem;
+  outline: none;
+}
+
+.form p {
+  margin: 1rem 0;
+  font-size: 0.7rem;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.social-list {
+  margin: 2rem 0;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transform: scale(0);
+  transition: 0.5s ease-in-out;
+  transition-delay: 1.2s;
+}
+
+.social-list > div {
+  color: $bg-white-0;
+  margin: 0 0.5rem;
+  padding: 0.7rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transform: scale(0);
+  transition: 0.5s ease-in-out;
+}
+
+.social-list > div:nth-child(1) {
+  transition-delay: 1.4s;
+}
+
+.social-list > div:nth-child(2) {
+  transition-delay: 1.6s;
+}
+
+.social-list > div:nth-child(3) {
+  transition-delay: 1.8s;
+}
+
+.social-list > div:nth-child(4) {
+  transition-delay: 2s;
+}
+
+.social-list > div > i {
+  font-size: 1.5rem;
+  transition: 0.4s ease-in-out;
+}
+
+.social-list > div:hover i {
+  transform: scale(1.5);
+}
+
+.facebook-bg {
+  background-color: $facebook-color;
+}
+
+.google-bg {
+  background-color: $google-color;
+}
+
+.twitter-bg {
+  background-color: $twitter-color;
+}
+
+.insta-bg {
+  background-color: $insta-color;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.login-register.sign-in .form.sign-in,
+.login-register.sign-in .social-list.sign-in,
+.login-register.sign-in .social-list.sign-in > div,
+.login-register.sign-up .form.sign-up,
+.login-register.sign-up .social-list.sign-up,
+.login-register.sign-up .social-list.sign-up > div {
+  transform: scale(1);
+}
+
+.content-row {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 6;
+  width: 100%;
+}
+
+.text {
+  margin: 4rem;
+  color: $bg-white-0;
+}
+
+.text h2 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 2rem 0;
+  transition: 1s ease-in-out;
+}
+
+.text p {
+  font-weight: 600;
+  transition: 1s ease-in-out;
+  transition-delay: 0.2s;
+}
+
+.img img {
+  width: 30vw;
+  transition: 1s ease-in-out;
+  transition-delay: 0.4s;
+}
+
+.text.sign-in h2,
+.text.sign-in p,
+.img.sign-in img {
+  transform: translateX(-300%);
+}
+
+.text.sign-up h2,
+.text.sign-up p,
+.img.sign-up img {
+  transform: translateX(350%);
+}
+
+.login-register.sign-in .text.sign-in h2,
+.login-register.sign-in .text.sign-in p,
+.login-register.sign-in .img.sign-in img,
+.login-register.sign-up .text.sign-up h2,
+.login-register.sign-up .text.sign-up p,
+.login-register.sign-up .img.sign-up img {
+  transform: translateX(0);
+}
+
+/* BACKGROUND */
+
+.login-register::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 300vw;
+  transform: translate(35%, 0);
+  background-image: linear-gradient(
+    -45deg,
+    $color-green-0 0%,
+    $color-green-1 100%
+  );
+  transition: 1s ease-in-out;
+  z-index: 6;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-bottom-right-radius: max(50vw, 50vh);
+  border-top-left-radius: max(50vw, 50vh);
+}
+
+.login-register.sign-in::before {
+  transform: translate(0, 0);
+  right: 50%;
+}
+
+.login-register.sign-up::before {
+  transform: translate(100%, 0);
+  right: 50%;
+}
+
+/* RESPONSIVE */
+
+@media only screen and (max-width: 991px) {
+  .login-register::before,
+  .login-register.sign-in::before,
+  .login-register.sign-up::before {
+    height: 100vh;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    z-index: 0;
+    transform: none;
+    right: 0;
+  }
+
+  /* .login-register.sign-in .col.sign-up {
+          transform: translateY(100%);
+      } */
+
+  .login-register.sign-in .col.sign-in,
+  .login-register.sign-up .col.sign-up {
+    transform: translateY(0);
+  }
+
+  .content-row {
+    align-items: flex-start !important;
+  }
+
+  .content-row .col {
+    transform: translateY(0);
+    background-color: unset;
+  }
+
+  .col {
+    width: 100%;
+    position: absolute;
+    padding: 2rem;
+    background-color: $bg-white-0;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    transform: translateY(100%);
+    transition: 1s ease-in-out;
+  }
+
+  .row {
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  .form,
+  .social-list {
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .text {
+    margin: 0;
+  }
+
+  .text p {
+    display: none;
+  }
+
+  .text h2 {
+    margin: 0.5rem;
+    font-size: 2rem;
+  }
+}
