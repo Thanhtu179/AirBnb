@@ -1,4 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { useParams } from "react-router";
+
 import Header from "../components/Header";
 import Helmet from "../components/Helmet";
 import Button, { OutlineButton } from "../components/Button";
@@ -6,17 +8,11 @@ import Section, { SectionBody, SectionTitle } from "../components/Section";
 import CardItem from "../components/CardItem";
 import Grid from "../components/Grid";
 import Footer from "../components/Footer";
+import { managerRoomsService } from "../services/ManagerRoomsService";
+import { managerReviewsService } from "../services/ManagerReviewsService";
 
 import img from "../assets/image/tyziiu.jpg";
 import { DatePicker } from "antd";
-
-const roomImages = [
-  "https://anhdep123.com/wp-content/uploads/2021/01/hinh-gai-xinh-deo-mat-kinh-toc-dai.jpg",
-  "https://anhdep123.com/wp-content/uploads/2021/01/hinh-gai-xinh-deo-mat-kinh-toc-dai.jpg",
-  "https://anhdep123.com/wp-content/uploads/2021/01/hinh-gai-xinh-deo-mat-kinh-toc-dai.jpg",
-  "https://anhdep123.com/wp-content/uploads/2021/01/hinh-gai-xinh-deo-mat-kinh-toc-dai.jpg",
-  "https://anhdep123.com/wp-content/uploads/2021/01/hinh-gai-xinh-deo-mat-kinh-toc-dai.jpg",
-];
 
 const AdvantagesItems = [
   {
@@ -42,61 +38,27 @@ const AdvantagesItems = [
   },
 ];
 
-const serviceItems = [
-  { icon: "bx bx-tv", title: "TV với truyền hình cádiv tiêu chuẩn" },
-  { icon: "bx bx-tv", title: "TV với truyền hình cádiv tiêu chuẩn" },
-  { icon: "bx bx-tv", title: "TV với truyền hình cádiv tiêu chuẩn" },
-  { icon: "bx bx-tv", title: "TV với truyền hình cádiv tiêu chuẩn" },
-  { icon: "bx bx-tv", title: "TV với truyền hình cádiv tiêu chuẩn" },
-  { icon: "bx bx-tv", title: "TV với truyền hình cádiv tiêu chuẩn" },
-  { icon: "bx bx-tv", title: "TV với truyền hình cádiv tiêu chuẩn" },
-  { icon: "bx bx-tv", title: "TV với truyền hình cádiv tiêu chuẩn" },
-];
-
-const roomContentItems = [
-  {
-    img: img,
-    title: "Thanh Tu",
-    description: "tháng 1 năm 2021",
-    comment:
-      "An apartment with a nice sea view from the 39th floor.  There is a pretty spacious area and enough amenities for a  group of people such as a family or a gang of friends.",
+const serviceKeyItem = {
+  elevator: { icon: "bx bx-collapse-vertical", title: "Thang máy thuận tiện" },
+  hotTub: { icon: "bx bxs-droplet-half", title: "Bồn nước nóng" },
+  pool: { icon: "bx bx-cylinder", title: "Hồ bơi rộng rãi" },
+  indoorFireplace: {
+    icon: "bx bx-store-alt",
+    title: "Lò sửi trong trong nhà tiện nghi",
   },
-  {
-    img: img,
-    title: "Thanh Tu",
-    description: "tháng 1 năm 2021",
-    comment:
-      "An apartment with a nice sea view from the 39th floor.  There is a pretty spacious area and enough amenities for a  group of people such as a family or a gang of friends.",
+  dryer: { icon: "bx bxl-jquery", title: "Máy sấy tóc" },
+  gym: { icon: "bx bx-run", title: "Phòng tập gym hiện đại" },
+  kitchen: { icon: "bx bxs-institution", title: "Nhà bếp sạch sẽ, thoáng mát" },
+  heating: {
+    icon: "bx bx-plus-medical",
+    title: "Tủ sở cứu cho mọi trường hợp khẩn cấp",
   },
-  {
-    img: img,
-    title: "Thanh Tu",
-    description: "tháng 1 năm 2021",
-    comment:
-      "An apartment with a nice sea view from the 39th floor.  There is a pretty spacious area and enough amenities for a  group of people such as a family or a gang of friends.",
+  wifi: { icon: "bx bx-wifi", title: "Wifi tốc độ cao" },
+  cableTV: {
+    icon: "bx bx-tv",
+    title: "TV với truyền hình cáp tivi tiêu chuẩn",
   },
-  {
-    img: img,
-    title: "Thanh Tu",
-    description: "tháng 1 năm 2021",
-    comment:
-      "An apartment with a nice sea view from the 39th floor.  There is a pretty spacious area and enough amenities for a  group of people such as a family or a gang of friends.",
-  },
-  {
-    img: img,
-    title: "Thanh Tu",
-    description: "tháng 1 năm 2021",
-    comment:
-      "An apartment with a nice sea view from the 39th floor.  There is a pretty spacious area and enough amenities for a  group of people such as a family or a gang of friends.",
-  },
-  {
-    img: img,
-    title: "Thanh Tu",
-    description: "tháng 1 năm 2021",
-    comment:
-      "An apartment with a nice sea view from the 39th floor.  There is a pretty spacious area and enough amenities for a  group of people such as a family or a gang of friends.",
-  },
-];
+};
 
 const rateTitleItem = [
   "Mức độ sạch sẽ",
@@ -121,10 +83,29 @@ const clickOutsideRef = (content_ref, toggle_ref) => {
   });
 };
 
-const Room = () => {
+const Room = (props) => {
+  let id = "6172332eefe193001c0a79d4";
+
   const number_user__toggle_el = useRef(null);
   const number_user__content_el = useRef(null);
   clickOutsideRef(number_user__content_el, number_user__toggle_el);
+
+  const [roomInfo, setRoomInfo] = useState({});
+  const [reviews, setReviews] = useState([]);
+  const userComemts = reviews.filter((item) => item.userId !== null);
+
+  //Du leiu tren server chi co 1 hinh
+  let roomImages = [
+    roomInfo.image,
+    roomInfo.image,
+    roomInfo.image,
+    roomInfo.image,
+    roomInfo.image,
+  ];
+
+  let serviceItems = [];
+
+  // console.log("mama", serviceItems[0].icon);?
 
   const onChange = (date, dateString) => {
     console.log(date, dateString);
@@ -149,11 +130,15 @@ const Room = () => {
       <div className="room__comments__item" key={index}>
         <CardItem
           circle={true}
-          img={item.img}
-          title={item.title}
-          description={item.description}
+          img={item.userId.avatar ? item.userId.avatar : img}
+          title={item.userId.name}
+          description={item.updatedAt}
         />
-        <p>{item.comment}</p>
+        <p>
+          {item.content.length > 100
+            ? item.content.substring(0, 100) + " ..."
+            : item.content}
+        </p>
       </div>
     );
   };
@@ -163,26 +148,68 @@ const Room = () => {
       <div className="room__comments--desktop__item" key={index}>
         <CardItem
           circle={true}
-          img={item.img}
-          title={item.title}
-          description={item.description}
+          img={item.userId?.avatar}
+          title={item.userId?.name}
+          description={item.updatedAt}
         />
-        <p>{item.comment}</p>
+        <p>
+          {item.content.length > 100
+            ? item.content.substring(0, 100) + " ..."
+            : item.content}
+        </p>
       </div>
     );
   };
 
-  const renderRateCount = (rate, numberUser) => {
+  const renderApplicationsRoom = () => {
+    return (
+      <div className="applications-room">
+        <span>{`${roomInfo.guests} người`}</span>
+        <span>{`${roomInfo.bedRoom} phòng ngủ`}</span>
+        <span>{`${roomInfo.bath} bồn tắm`}</span>
+      </div>
+    );
+  };
+
+  const renderRateCount = () => {
+    let rate = 4.5;
     return (
       <div className="rate">
         <span className="rate__start">
           <i className="bx bxs-star" />
           {rate}
         </span>
-        <span className="rate__user-count">{`(${numberUser} đánh giá)`}</span>
+        <span className="rate__user-count">{`(${userComemts.length} đánh giá)`}</span>
       </div>
     );
   };
+
+  useEffect(() => {
+    const getRoomInfo = async (id) => {
+      try {
+        const response = await managerRoomsService.getRoomInfo(id);
+        setRoomInfo(response.data);
+        window.scrollTo(0, 0);
+        console.log("first", response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getRoomInfo(id);
+  }, []);
+
+  useEffect(() => {
+    const getReviewListByRoomId = async (id) => {
+      try {
+        const response = await managerReviewsService.getReviewListByRoomId(id);
+        setReviews(response.data);
+        console.log("reve", response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getReviewListByRoomId(id);
+  }, []);
 
   return (
     <div>
@@ -193,7 +220,6 @@ const Room = () => {
             <div className="room__header">
               <div className="room__header__left">
                 <i className="bx bx-chevron-left"></i>
-                <span>Nhà riêng</span>
                 <span>AirBnb</span>
               </div>
               <div className="room__header__right">
@@ -208,12 +234,12 @@ const Room = () => {
               </div>
             </div>
             <div className="room__detail">
-              <h1>Blue Ocean view from your bed and balcony</h1>
+              <h1>{roomInfo.name}</h1>
               <div className="room__detail__content">
                 <div className="room__detail__content__rate-location">
-                  {renderRateCount(4.5, 12)}
+                  {renderRateCount()}
                   <div className="room__detail__content__rate-location__location">
-                    <span>Thành phố Nha Trang, Khánh Hòa, Việt Nam</span>
+                    <span>{`${roomInfo.locationId?.name}, ${roomInfo.locationId?.province}, ${roomInfo.locationId?.country} `}</span>
                   </div>
                 </div>
                 <div className="room__detail__content__action">
@@ -249,15 +275,10 @@ const Room = () => {
                 <div className="info__title">
                   <div className="info__title__left">
                     <h2>
-                      Toàn bộ căn hộ condo <span>Chủ nhà Phong</span>
+                      Toàn bộ căn hộ condo <span>Chủ nhà Tú</span>
                     </h2>
                     <div className="applications">
-                      <div className="applications-room">
-                        <span>4 phòng khách</span>
-                        <span>4 phòg ngủ</span>
-                        <span>4 giường</span>
-                        <span>4 phòng tắm</span>
-                      </div>
+                      {renderApplicationsRoom()}
                     </div>
                   </div>
                   <div className="info__title__right">
@@ -273,11 +294,13 @@ const Room = () => {
                   <SectionBody>
                     <div className="info__advantages">
                       {AdvantagesItems.map((item, index) => (
-                        <CardItem
-                          icon={item.icon}
-                          title={item.title}
-                          description={item.description}
-                        />
+                        <div className="info__advantages__item" key={index}>
+                          <CardItem
+                            icon={item.icon}
+                            title={item.title}
+                            description={item.description}
+                          />
+                        </div>
                       ))}
                     </div>
                   </SectionBody>
@@ -312,10 +335,10 @@ const Room = () => {
                   <SectionBody>
                     <div className="info__service">
                       <Grid col={2} lgCol={1} gap={20}>
-                        {serviceItems.map((item, index) => (
+                        {serviceItems?.map((item, index) => (
                           <div className="info__service__item" key={index}>
-                            <i class={item.icon}></i>
-                            {item.title}
+                            <i className={item?.icon}></i>
+                            {item?.title}
                           </div>
                         ))}
                       </Grid>
@@ -336,7 +359,7 @@ const Room = () => {
                       </p>
                     </div>
                     <div className="book-ticket__title__rate">
-                      {renderRateCount(4.5, 12)}
+                      {renderRateCount()}
                     </div>
                   </div>
                   <div className="book-ticket__info">
@@ -434,7 +457,7 @@ const Room = () => {
             {/* Room rate */}
             <div className="room__rate">
               <Section borderTop={true}>
-                <SectionTitle>{renderRateCount(4.5, 12)}</SectionTitle>
+                <SectionTitle>{renderRateCount()}</SectionTitle>
                 <SectionBody>
                   <div className="room__rate__content">
                     {rateTitleItem.map((item, index) =>
@@ -451,21 +474,29 @@ const Room = () => {
               <SectionBody>
                 <div className="room__comments">
                   <Grid col={2} mdCol={1}>
-                    {roomContentItems.map((item, index) =>
-                      renderCommentItem(item, index)
-                    )}
+                    {userComemts.length > 6
+                      ? userComemts.slice(0, 5)
+                      : userComemts.map((item, index) =>
+                          renderCommentItem(item, index)
+                        )}
                   </Grid>
-                  <OutlineButton className="room__comments__btn">
-                    Hiển thị tất cả đánh giá
-                  </OutlineButton>
+                  {userComemts > 6 ? (
+                    <OutlineButton className="room__comments__btn">
+                      Hiển thị tất cả đánh giá
+                    </OutlineButton>
+                  ) : null}
                 </div>
                 <div className="room__comments--desktop">
-                  {roomContentItems.map((item, index) =>
-                    renderCommentItemDesktop(item, index)
-                  )}
-                  <OutlineButton className="room__comments--desktop__btn">
-                    Hiển thị tất cả đánh giá
-                  </OutlineButton>
+                  {userComemts.length > 6
+                    ? userComemts.slice(0, 5)
+                    : userComemts.map((item, index) =>
+                        renderCommentItemDesktop(item, index)
+                      )}
+                  {userComemts > 6 ? (
+                    <OutlineButton className="room__comments__btn">
+                      Hiển thị tất cả đánh giá
+                    </OutlineButton>
+                  ) : null}
                 </div>
               </SectionBody>
             </Section>

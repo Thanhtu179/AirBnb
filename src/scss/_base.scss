@@ -87,6 +87,10 @@ p {
   @include mobile {
     padding: 0 10px;
   }
+
+  &.fluid {
+    max-width: 100%;
+  }
 }
 
 .grid {

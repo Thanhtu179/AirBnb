@@ -44,10 +44,10 @@ const supportItems = [
   { path: "/", displayName: "Tin cậy và an toàn" },
 ];
 
-const Footer = () => {
+const Footer = (props) => {
   return (
     <div className="footer">
-      <div className="container">
+      <div className={`container ${props.fluid ? "fluid" : null}`}>
         <div className="footer__info">
           <Grid col={4} lgCol={2} mdCol={1} gap={30}>
             <div>

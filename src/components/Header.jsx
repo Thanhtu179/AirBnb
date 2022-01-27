@@ -8,7 +8,7 @@ import UserControlButton from "../components/UserControlButton";
 const Header = (props) => {
   return (
     <div className={`header `}>
-      <div className="container header__wrap">
+      <div className={`container header__wrap ${props.fluid ? "fluid" : ""}`}>
         <div className="header__logo">
           <Link to="/">
             <img src={logo} alt={logo} />

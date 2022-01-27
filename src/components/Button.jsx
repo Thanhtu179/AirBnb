@@ -21,4 +21,18 @@ export const OutlineButton = (props) => {
   );
 };
 
+export const ButtonSelect = (props) => {
+  return (
+    <button
+      className={`btn-select ${props.active ? "active" : ""} ${
+        props.className
+      }`}
+      onClick={props.onClick ? () => props.onClick() : null}
+    >
+      {props.icon ? <i className={props.icon}></i> : null}
+      {props.children}
+    </button>
+  );
+};
+
 export default Button;

@@ -1,13 +1,57 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+import { managerReviewsService } from "../services/ManagerReviewsService";
+import numberWithCommas from "../utils/numberWithCommas";
+
+const applicationKeyItems = {
+  elevator: "thang máy",
+  hotTub: "Bồn nước nóng",
+  pool: "Hồ bơi",
+  indoorFireplace: "Lò sưởi trong nhà",
+  dryer: "May sấy tóc",
+  gym: "phòng gym",
+  kitchen: "nhà bếp",
+  heating: "Tủ y tế",
+  wifi: "Wifi",
+  cableTV: "Tivi truyền hình cáp",
+};
 
 const CardRoom = (props) => {
+  const item = props.item;
+  const [reviews, setReviews] = useState([]);
+
+  let applications = [];
+
+  for (let key in item) {
+    if (item[key] === true) {
+      applications.push(applicationKeyItems[key]);
+    }
+  }
+
+  useEffect(() => {
+    const getReviewListByRoomId = async (id) => {
+      try {
+        const response = await managerReviewsService.getReviewListByRoomId(id);
+        setReviews(response.data);
+        // console.log("reve", response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getReviewListByRoomId(item._id);
+  }, []);
+
   return (
     <div className="card-room">
       <div className="card-room__images">
         <div
           className="card-room__images__item"
           style={{
-            backgroundImage: `url("https://www.dungplus.com/wp-content/uploads/2019/12/girl-xinh-600x600.jpg")`,
+            backgroundImage: `url(${
+              item.image
+                ? item.image
+                : "https://www.dungplus.com/wp-content/uploads/2019/12/girl-xinh-600x600.jpg"
+            })`,
           }}
         ></div>
         <div className="card-room__images__icon">
@@ -18,18 +62,25 @@ const CardRoom = (props) => {
       <div className="card-room__content">
         <div className="card-room__content__info">
           <div className="card-room__content__info__left">
-            <p>Toàn căn hộ chung cư cao cấp tại việt nam</p>
-            <h3>Blue Ocean view from your bed and balcony</h3>
+            <p>
+              {item.description.length > 50
+                ? item.description.substring(0, 50) + " ..."
+                : item.description}
+            </p>
+            <h3>{item.name}</h3>
             <div className="applications">
               <div className="applications-room">
-                <span>4 phòng khách</span>
-                <span>4 phòg ngủ</span>
-                <span>4 giường</span>
-                <span>4 phòng tắm</span>
+                <span>{`${item.guests} người`}</span>
+                <span>{`${item.bedRoom} phòng ngủ`}</span>
+                <span>{`${item.bath} phòng ngủ`}</span>
               </div>
               <div className="applications-item">
-                <span>Máy giặc</span>
-                <span>Wifi</span>
+                {(applications.length > 4
+                  ? applications.slice(0, 3)
+                  : applications
+                ).map((item, index) => (
+                  <span key={index}>{item}</span>
+                ))}
               </div>
             </div>
           </div>
@@ -47,12 +98,12 @@ const CardRoom = (props) => {
                 <i className="bx bxs-star" />
                 4.58
               </span>
-              <span className="rate__user-count">(13 đánh giá)</span>
+              <span className="rate__user-count">{`( ${reviews.length} đánh giá)`}</span>
             </div>
           </div>
           <div className="card-room__content__rate-price__price">
             <p>
-              <span>$12 </span>/ đêm
+              <span>{numberWithCommas(item.price)}</span> đ / đêm
             </p>
           </div>
         </div>

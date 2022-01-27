@@ -6,7 +6,6 @@ import Helmet from "../components/Helmet";
 import Section, { SectionTitle, SectionBody } from "../components/Section";
 import Grid from "../components/Grid";
 import CardItem from "../components/CardItem";
-import CardRoom from "../components/CardRoom";
 
 const recentLocationList = [
   {
@@ -111,7 +110,6 @@ const Home = () => {
         </SectionBody>
       </Section>
       {/* End where Section */}
-      <CardRoom />
       <Footer />
     </Helmet>
   );

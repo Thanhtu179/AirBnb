@@ -1,0 +1,150 @@
+.room-list {
+  &__header--tablet {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: max-content;
+    background-color: $bg-white-0;
+    z-index: 99;
+    box-shadow: $box-shadow-1;
+
+    @include tablet {
+      display: block;
+    }
+
+    &__title {
+      @include flex(center, space-between);
+      padding: 12px 0;
+
+      &__icon {
+        @include flex(center, center);
+        width: 45px;
+        height: 45px;
+        font-size: 1.6rem;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: $bg-white-4;
+        }
+      }
+
+      &__name {
+        flex-grow: 1;
+        height: 48px;
+        border-radius: $border-radius-1;
+        background-color: $bg-white-3;
+        text-align: center;
+        line-height: 48px;
+        margin: 0 20px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+    }
+
+    &__btns {
+      margin: 10px 0;
+      @include flex(center, center);
+
+      & > * ~ * {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  &__btns {
+    @include flex(center, center);
+    padding: 2rem 0;
+    border-bottom: 1px solid $bg-white-3;
+
+    & > * ~ * {
+      margin-left: 20px;
+    }
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__content {
+    display: flex;
+    position: relative;
+
+    @include tablet {
+      margin-top: 145px;
+    }
+
+    &__left {
+      width: 60%;
+
+      @media screen and (max-width: 1400px) {
+        width: 100%;
+      }
+
+      &__title {
+        padding: 1.5rem 0;
+
+        span {
+          color: $txt-white-1;
+        }
+
+        h2 {
+          margin-top: 10px;
+          margin-bottom: 0;
+          font-weight: 600;
+          font-size: 2rem;
+        }
+      }
+
+      &__rooms {
+        &__item {
+          padding: 2.5rem 0;
+          border-top: 1px solid $bg-white-3;
+          display: block;
+
+          @include tablet {
+            padding-top: 0;
+          }
+
+          @include tablet {
+            border-top: none;
+          }
+
+          &:hover {
+            color: unset;
+          }
+        }
+      }
+
+      &__pagination {
+        text-align: center;
+        border-top: 1px solid $bg-white-3;
+        padding: 2.5rem 0;
+
+        p {
+          margin: 1.5rem 0 2rem;
+        }
+      }
+    }
+
+    &__right {
+      flex-grow: 1;
+      // background-color: aqua;
+      position: relative;
+
+      &__img {
+        position: sticky;
+        width: 100%;
+        top: 0;
+        left: 0;
+        padding-top: 100vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+    }
+  }
+}
