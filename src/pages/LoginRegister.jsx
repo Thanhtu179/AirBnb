@@ -85,12 +85,12 @@ const LoginRegister = (props) => {
         {/* SIGN IN CONTENT */}
         <div className="col align-items-center flex-col">
           <div className="text sign-in">
-            <h2>Welcome back</h2>
+            <h2>Chào mừng bạn đến với AirBnb</h2>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit
-              obcaecati, accusantium molestias, laborum, aspernatur deserunt
-              officia voluptatum tempora dicta quo ab ullam. Assumenda enim
-              harum minima possimus dignissimos deserunt rem.
+              Thay vì ở trong một khách sạn chật kín những du khách khác, với
+              Airbnb, bạn có thể ở trong một căn hộ trong một tòa nhà tập trung
+              nhiều người dân địa phương. Đó là một trải nghiệm hoàn toàn khác
+              và có thể chân thực hơn.
             </p>
           </div>
           <div className="img sign-in">
@@ -104,12 +104,12 @@ const LoginRegister = (props) => {
             <img src={svgSignUp} alt="welcome" />
           </div>
           <div className="text sign-up">
-            <h2>Join with us</h2>
+            <h2>Tham gia với chúng tôi</h2>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit
-              obcaecati, accusantium molestias, laborum, aspernatur deserunt
-              officia voluptatum tempora dicta quo ab ullam. Assumenda enim
-              harum minima possimus dignissimos deserunt rem.
+              Sắp xếp chỗ ở cho các chuyến công tác là một lựa chọn tuyệt vời
+              với Airbnb, giúp bạn lựa chọn nhà ở và khách sạn boutique trên
+              toàn thế giới cùng với một bộ dụng cụ hữu ích ngay trong tầm tay
+              bạn.
             </p>
           </div>
         </div>
