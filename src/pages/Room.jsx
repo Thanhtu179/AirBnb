@@ -85,6 +85,7 @@ const clickOutsideRef = (content_ref, toggle_ref) => {
 
 const Room = (props) => {
   let id = "6172332eefe193001c0a79d4";
+  // let { id } = props.match.params;
 
   const number_user__toggle_el = useRef(null);
   const number_user__content_el = useRef(null);
@@ -203,7 +204,7 @@ const Room = (props) => {
       try {
         const response = await managerReviewsService.getReviewListByRoomId(id);
         setReviews(response.data);
-        console.log("reve", response.data);
+        // console.log("reve", response.data);
       } catch (err) {
         console.log(err);
       }

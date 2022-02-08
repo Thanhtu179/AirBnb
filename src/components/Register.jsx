@@ -7,7 +7,7 @@ import {
   registerAction,
 } from "../redux/Actions/ManagerUsersAction";
 import { useSelector } from "react-redux";
-import { ManagerUsersService } from "../services/ManagerUsersService";
+import { managerUsersService } from "../services/ManagerUsersService";
 
 const Register = (props) => {
   const toggle = props.toggle;
@@ -47,7 +47,7 @@ const Register = (props) => {
       if (index != -1) {
         formik.setFieldError("email", "Email đã được đăng ký");
       } else {
-        register();
+        register(values);
         // console.log("object", values);
       }
     },
@@ -55,13 +55,14 @@ const Register = (props) => {
 
   const register = async (data) => {
     try {
-      const result = await ManagerUsersService.register(data);
+      const result = await managerUsersService.register(data);
       if (result.status === 200) {
         alert("Bạn đâ đăng ký thành công");
         toggle();
       }
     } catch (error) {
       alert(error.response.data.message);
+      // console.log("Error", error);
     }
   };
 

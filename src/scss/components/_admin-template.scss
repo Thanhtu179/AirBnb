@@ -1,0 +1,18 @@
+.admin-template {
+  color: $txt-dark-1;
+}
+
+.admin-template__content {
+  padding-left: $sidebar-width;
+  background-color: $bg-white-5;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+.admin-template__content.toggle {
+  padding-left: $sidebar-width-toggle;
+}
+
+.admin-template__content-main {
+  padding: 30px;
+}

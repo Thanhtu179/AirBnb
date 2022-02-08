@@ -47,4 +47,22 @@ const Dropdown = (props) => {
   );
 };
 
+export const DropdownDefault = (props) => {
+  const dropdown_toggle_el = useRef(null);
+  const dropdown_content_el = useRef(null);
+
+  clickOutsideRef(dropdown_content_el, dropdown_toggle_el);
+
+  return (
+    <div className="dropdown">
+      <button ref={dropdown_toggle_el} className="dropdown__toggle">
+        {props.customToggle ? props.customToggle() : ""}
+      </button>
+      <div ref={dropdown_content_el} className="dropdown__content">
+        {props.children}
+      </div>
+    </div>
+  );
+};
+
 export default Dropdown;

@@ -32,16 +32,16 @@
   &.sign-up > .btn-back-home {
     color: $color-dark-1;
   }
-}
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  height: 100vh;
-}
+  & .row {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+  }
 
-.col {
-  width: 50%;
+  & .col {
+    width: 50%;
+  }
 }
 
 .align-items-center {

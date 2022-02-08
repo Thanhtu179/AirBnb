@@ -24,6 +24,7 @@ export const loginAction = (loginInfo) => {
                     })
                     // console.log("first", userInfoLogin);
                 }
+                alert("Đăng nhập thành công")
                 //Chuyển hướng đăng nhập về trang trước đó
                 history.goBack();
             }

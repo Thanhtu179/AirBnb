@@ -1,4 +1,4 @@
-import { OPEN_DRAWER, CLOSE_DRAWER } from "../Types/AdminControlType"
+import { OPEN_DRAWER, CLOSE_DRAWER, SET_SIDER_BAR } from "../Types/AdminControlType"
 
 
 
@@ -7,7 +7,8 @@ const initialState = {
         drawerVisible: false,
         drawerContent: <p>Default</p>,
         drawerTitle: "Test",
-    }
+    },
+    sidebarToggle: false,
 }
 
 export default (state = initialState, action) => {
@@ -24,6 +25,11 @@ export default (state = initialState, action) => {
             state.modalDrawer.drawerVisible = false;
             state.modalDrawer.drawerTitle = "Title Default";
             state.modalDrawer.drawerContent = <p>Default</p>;
+            return { ...state }
+        }
+
+        case SET_SIDER_BAR: {
+            state.sidebarToggle = !state.sidebarToggle;
             return { ...state }
         }
 

@@ -1,4 +1,4 @@
-import { OPEN_DRAWER, CLOSE_DRAWER } from "../Types/AdminControlType"
+import { OPEN_DRAWER, CLOSE_DRAWER, SET_SIDER_BAR } from "../Types/AdminControlType"
 
 export const openDrawer = (title, content) => ({
     type: OPEN_DRAWER,
@@ -9,3 +9,7 @@ export const openDrawer = (title, content) => ({
 export const closeDrawer = () => ({
     type: CLOSE_DRAWER,
 })
+
+export const setSiderBar = () => ({
+    type: SET_SIDER_BAR,
+}) 

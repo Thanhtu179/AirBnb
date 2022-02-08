@@ -80,9 +80,6 @@ const RoomList = () => {
               <ButtonSelect>Loại nơi ở</ButtonSelect>
             </div>
             <div className="room-list__btns__item">
-              <ButtonSelect>Loại nơi ở</ButtonSelect>
-            </div>
-            <div className="room-list__btns__item">
               <ButtonSelect>Giá</ButtonSelect>
             </div>
             <div className="room-list__btns__item">

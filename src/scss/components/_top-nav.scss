@@ -1,0 +1,98 @@
+.topnav {
+  padding: 10px 30px;
+
+  &__wrap {
+    @include flex(center, space-between);
+    padding: 30px;
+    height: $topnav-height;
+    background-color: $bg-white-0;
+    box-shadow: $box-shadow-2;
+    border-radius: $border-radius-2;
+  }
+
+  &__toggle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    @include flex(center, center);
+
+    & > i {
+      font-size: 1.5rem;
+    }
+
+    &:hover {
+      background-color: $bg-white-4;
+    }
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+
+    & > * ~ * {
+      margin-left: 30px;
+    }
+  }
+
+  &__right-user {
+    display: flex;
+    align-items: center;
+
+    &__image {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 10px;
+    }
+
+    &__name {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  }
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $bg-white-5;
+  }
+
+  & > i {
+    margin-right: 20px;
+    font-size: 1.5rem;
+  }
+}
+
+// .topnav__search {
+//   position: relative;
+//   height: 50px;
+//   background-color: $bg-white-0;
+//   display: flex;
+//   align-items: center;
+//   box-shadow: $box-shadow-2;
+//   border-radius: $border-radius-2;
+//   overflow: hidden;
+// }
+
+// .topnav__search > input {
+//   height: 100%;
+//   width: 100%;
+//   padding: 10px 60px 10px 20px;
+//   font-size: 1rem;
+//   border-radius: $border-radius-2;
+//   color: $txt-dark-1;
+//   background-color: $bg-white-0;
+// }
+
+// .topnav__search > i {
+//   font-size: 1.5rem;
+//   position: absolute;
+//   right: 20px;
+// }
