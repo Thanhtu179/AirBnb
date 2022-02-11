@@ -142,7 +142,7 @@ const ManagerLocation = () => {
       render: (text, Location) => {
         return (
           <div className="align-items-center">
-            <NavLink to={`/locations/${Location._id}`}>
+            <NavLink to={`/room-list/${Location._id}`}>
               <Button shape="round" type="primary" ghost>
                 Chi tiết
               </Button>

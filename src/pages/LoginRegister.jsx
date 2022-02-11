@@ -7,6 +7,7 @@ import Register from "../components/Register";
 import { Link } from "react-router-dom";
 
 const LoginRegister = (props) => {
+  let { posotion } = props.match.params;
   const loginRegisterRef = useRef(null);
   const timeOut = useRef(null);
   const toggle = useCallback(() => {
@@ -16,7 +17,11 @@ const LoginRegister = (props) => {
 
   useEffect(() => {
     timeOut.current = setTimeout(() => {
-      loginRegisterRef.current.classList.add("sign-in");
+      if (posotion === "sign-in") {
+        loginRegisterRef.current.classList.add("sign-in");
+      } else if (posotion === "sign-up") {
+        loginRegisterRef.current.classList.add("sign-up");
+      }
     }, 200);
 
     return () => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 import HeaderHome from "../components/HeaderHome";
 import Footer from "../components/Footer";
@@ -6,6 +6,7 @@ import Helmet from "../components/Helmet";
 import Section, { SectionTitle, SectionBody } from "../components/Section";
 import Grid from "../components/Grid";
 import CardItem from "../components/CardItem";
+import bgHome from "../assets/image/bg-home.jpg";
 
 const recentLocationList = [
   {
@@ -70,45 +71,90 @@ const characteristicLocationItems = [
 ];
 
 const Home = () => {
+  const searchShirnk = useRef(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        searchShirnk.current.classList.add("shrink");
+      } else {
+        searchShirnk.current.classList.remove("shrink");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <Helmet title="Trang chủ">
-      <HeaderHome />
+      <div className="home-wrapper">
+        <HeaderHome />
+        <div className="home__slider">
+          <div
+            className="home__slider__img"
+            style={{ backgroundImage: `url(${bgHome})` }}
+          >
+            <div className="home__slider__img__search " ref={searchShirnk}>
+              <div className="home__slider__img__search__btn">
+                <i className="bx bx-search"></i>
+                <span>Bạn sắp đi đâu</span>
+              </div>
+            </div>
+          </div>
+          <div className="home__slider__title">
+            <h1>Nhờ có host, mọi điều, điều có thể</h1>
+          </div>
+        </div>
+      </div>
+
       {/* Location Section */}
-      <Section>
-        <SectionTitle>Khám phá những điểm đến gần đây</SectionTitle>
-        <SectionBody>
-          <Grid col={4} lgCol={2} mdCol={1} gap={20}>
-            {recentLocationList.map((item, index) => (
-              <CardItem
-                img={item.img}
-                title={item.displayName}
-                description={item.description}
-                key={index}
-              />
-            ))}
-          </Grid>
-        </SectionBody>
-      </Section>
+      <div className="container">
+        <Section>
+          <SectionTitle>Khám phá những điểm đến gần đây</SectionTitle>
+          <SectionBody>
+            <Grid col={4} lgCol={2} mdCol={1} gap={20}>
+              {recentLocationList.map((item, index) => (
+                <CardItem
+                  img={item.img}
+                  title={item.displayName}
+                  description={item.description}
+                  key={index}
+                />
+              ))}
+            </Grid>
+          </SectionBody>
+        </Section>
+      </div>
       {/* End Location Section */}
       {/* where Section */}
-      <Section>
-        <SectionTitle>Ở bất cứ đâu</SectionTitle>
-        <SectionBody>
-          <Grid col={4} mdCol={2} smCol={1} gap={20}>
-            {characteristicLocationItems.map((item, index) => (
-              <div className="home-location-cart" key={index}>
-                <div
-                  className="home-location-cart__image"
-                  style={{ backgroundImage: `url(${item.img})` }}
-                ></div>
-                <div className="home-location-cart__content">
-                  <p>{item.displayName}</p>
+      <div className="container">
+        <Section>
+          <SectionTitle>Ở bất cứ đâu</SectionTitle>
+          <SectionBody>
+            <Grid col={4} lgCol={2} mdCol={1} gap={20}>
+              {characteristicLocationItems.map((item, index) => (
+                <div className="home-location-cart" key={index}>
+                  <div
+                    className="home-location-cart__image"
+                    style={{ backgroundImage: `url(${item.img})` }}
+                  ></div>
+                  <div className="home-location-cart__content">
+                    <p>{item.displayName}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </Grid>
-        </SectionBody>
-      </Section>
+              ))}
+            </Grid>
+          </SectionBody>
+        </Section>
+      </div>
       {/* End where Section */}
       <Footer />
     </Helmet>

@@ -81,6 +81,14 @@ p {
 }
 
 @each $val in $numbers {
+  .col-xl-#{$val} {
+    @include lager-desktop {
+      width: calc(($val / 12) * 100%);
+    }
+  }
+}
+
+@each $val in $numbers {
   .col-lg-#{$val} {
     @include desktop {
       width: calc(($val / 12) * 100%);
@@ -110,9 +118,9 @@ p {
   margin: 0 -15px;
 }
 
-[class*="col-"] {
-  padding: 0 15px;
-}
+// [class*="col-"] {
+//   padding: 0 15px;
+// }
 
 .container {
   width: 100%;

@@ -1,9 +1,13 @@
 .header {
   width: 100%;
-  height: $header-height;
+  // height: $header-height;
+  height: max-content;
+  padding: 30px 0;
   box-shadow: $box-shadow-1;
   background-color: $bg-white-0;
   transition: height 0.3s ease, background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
 
   @include tablet {
     display: none;
@@ -28,7 +32,7 @@
 
   &__wrap {
     height: 100%;
-    @include flex(center, space-between);
+    @include flex(flex-start, space-between);
   }
 
   &__search {
@@ -41,7 +45,12 @@
     max-width: 300px;
     cursor: pointer;
     box-shadow: $box-shadow;
+    background-color: transparent;
     transition: box-shadow 0.3s ease;
+
+    &.active {
+      display: none;
+    }
 
     &__content {
       @include flex(center, unset);
@@ -92,6 +101,323 @@
       & > a:hover {
         color: unset !important;
         background-color: $bg-white-4;
+      }
+
+      &:nth-child(1) {
+        @include desktop {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.header__search-menu {
+  flex-direction: column;
+  flex-grow: 1;
+  display: none;
+
+  &.active {
+    @include flex(flex-start, unset);
+  }
+
+  @include desktop {
+    margin-top: 5rem;
+  }
+
+  &__title {
+    width: 100%;
+    ul {
+      @include flex(center, center);
+
+      & > * ~ * {
+        margin-left: 20px;
+      }
+
+      @include desktop {
+        & > * ~ * {
+          margin-left: 30px;
+        }
+      }
+    }
+
+    &__item {
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      position: relative;
+
+      @include desktop {
+        font-size: 1.2rem;
+      }
+
+      &:hover {
+        color: $txt-white-2;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 2px;
+        background-color: $color-dark-1;
+        transition: width 0.3s ease;
+      }
+
+      &:hover::before {
+        width: 5px;
+      }
+
+      &.active::before {
+        width: 20px;
+      }
+    }
+  }
+}
+
+.header__search-menu__info {
+  margin-top: 30px;
+  width: 100%;
+  display: none;
+
+  &.active {
+    @include flex(flex-start, center);
+  }
+
+  .header-search-form {
+    @include flex(center, unset);
+    width: 70%;
+    border: 1px solid $bg-white-3;
+    border-radius: 40px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+
+    @include lager-desktop {
+      width: 85%;
+    }
+
+    @include desktop {
+      width: 95%;
+    }
+
+    .form-group {
+      padding: 14px 24px;
+      border-radius: 40px;
+
+      cursor: pointer;
+
+      @include lager-desktop {
+        padding: 7px 15px;
+      }
+
+      &:hover {
+        background-color: $bg-white-2;
+      }
+
+      &.active {
+        background-color: $bg-white-0;
+        box-shadow: $box-shadow-3;
+      }
+
+      p {
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      &:nth-child(1) {
+        padding-left: 24px;
+        width: 20%;
+      }
+      //   @include desktop {
+      //     padding-left: 30px;
+      //   }
+      // }
+
+      &:nth-child(2),
+      &:nth-child(3) {
+        width: 25%;
+      }
+
+      &.form-group--btn {
+        // @include flex(center, unset);
+        flex-grow: 1;
+        position: relative;
+      }
+    }
+
+    &__location {
+      position: relative;
+
+      &__menu {
+        position: absolute;
+        top: calc(100% + 5px);
+        left: 0;
+        width: max-content;
+        max-width: 400px;
+        height: 520px;
+        overflow-y: auto;
+        background-color: $bg-white-0;
+        box-shadow: $box-shadow-1;
+        border-radius: $border-radius-1;
+        transform-origin: top left;
+        transform: scale(0);
+        transition: transform 0.3s ease 0s;
+        z-index: 2;
+        padding: 20px;
+
+        &.active {
+          transform: scale(1);
+          transition: transform 0.5s $transition-cubic;
+        }
+      }
+    }
+
+    &__number-users {
+      position: relative;
+
+      &__menu {
+        position: absolute;
+        top: calc(100% + 5px);
+        right: 0;
+        // width: max-content;
+        min-width: 350px;
+        background-color: $bg-white-0;
+        box-shadow: $box-shadow-1;
+        border-radius: $border-radius-1;
+        overflow: hidden;
+        transform-origin: top left;
+        transform: scale(0);
+        transition: transform 0.3s ease 0s;
+        z-index: 2;
+        padding: 20px;
+
+        & > * ~ * {
+          margin-top: 2rem;
+        }
+
+        &__item {
+          @include flex(center, space-between);
+
+          &__title {
+            h3 {
+              font-weight: 600;
+              margin-bottom: 0;
+            }
+
+            p {
+              color: $txt-white-1;
+            }
+          }
+
+          &__btns {
+            @include flex(center, unset);
+
+            span {
+              width: 35px;
+              height: 35px;
+              border: 1px solid $bg-white-3;
+              border-radius: 50%;
+              text-align: center;
+              line-height: 35px;
+              font-weight: 600;
+              font-size: 1.2rem;
+              transition: border-color 0.3s ease;
+
+              &:hover {
+                border-color: $color-dark-2;
+              }
+            }
+
+            p {
+              margin: 0 1rem;
+            }
+          }
+        }
+
+        &.active {
+          transform: scale(1);
+          transition: transform 0.5s $transition-cubic;
+        }
+      }
+    }
+
+    button {
+      @include flex(center, center);
+      background-color: $color-primary;
+      border-color: $color-primary;
+      color: $txt-white-0;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border-radius: 50% !important;
+      padding: 10px !important;
+      width: max-content;
+      position: absolute;
+      top: 13px;
+      right: 13px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba($color-primary, 0.9) !important;
+      }
+
+      span {
+        display: none;
+      }
+
+      i {
+        font-size: 1.2rem;
+      }
+
+      @include lager-desktop {
+        top: 6px;
+        right: 6px;
+      }
+    }
+
+    input {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      width: 92%;
+    }
+
+    &.active {
+      background-color: $bg-white-3;
+
+      button {
+        padding: 10px 20px !important;
+        border-radius: 30px !important;
+        top: 10px;
+        right: 10px;
+
+        @include lager-desktop {
+          padding: 7px 15px !important;
+          top: 6px;
+          right: 6px;
+        }
+
+        i {
+          margin-right: 10px;
+        }
+
+        span {
+          display: block !important;
+        }
+
+        @include desktop {
+          border-radius: 50% !important;
+          padding: 10px !important;
+          span {
+            display: none !important;
+          }
+
+          i {
+            margin-right: 0;
+          }
+        }
       }
     }
   }

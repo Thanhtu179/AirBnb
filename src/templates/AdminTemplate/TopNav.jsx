@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import user_image from "../../assets/image/tyziiu.jpg";
+import userImg from "../../assets/image/user.png";
 import Dropdown, { DropdownDefault } from "../../components/Dropdown";
 import { setSiderBar } from "../../redux/Actions/AdminControlAction";
 import { TOKEN, USER_INFO, USER_LOGIN } from "../../utils/settingSystem";
@@ -58,16 +58,14 @@ const TopNav = () => {
 
   const renderUserToggle = (userInfo) => (
     <div className="topnav__right-user">
-      <div className="topnav__right-user__image">
-        {userInfo.avatar ? (
-          <img src={userInfo.avatar} alt={userInfo.avatar} />
-        ) : (
-          <img
-            src="https://png.pngtree.com/png-vector/20190803/ourlarge/pngtree-user-id-login-image-png-image_1648074.jpg"
-            alt=""
-          />
-        )}
-      </div>
+      <div
+        className="topnav__right-user__image"
+        style={{
+          backgroundImage: `url(${
+            userInfo?.avatar ? userInfo.avatar : userImg
+          })`,
+        }}
+      ></div>
       <div className="topnav__right-user__name">{userInfo.name}</div>
     </div>
   );

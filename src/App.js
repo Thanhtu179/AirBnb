@@ -10,7 +10,8 @@ import LoginRegister from "./pages/LoginRegister";
 import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
 import ManagerLocation from "./pages/ManagerLocation";
 import ManagerUsers from "./pages/ManagerUsers";
-import ManagerRooms from "./pages/ManagerRooms"
+import ManagerRooms from "./pages/ManagerRooms";
+import UserInfo from "./pages/UserInfo";
 
 export const history = createBrowserHistory();
 
@@ -21,8 +22,9 @@ function App() {
         <Route exact path="/home" component={Home} />
         <Route exact path="/" component={Home} />
         <Route path="/room/:id" component={Room} />
-        <Route exact path="/room-list" component={RoomList} />
-        <Route exact path="/login-register" component={LoginRegister} />
+        <Route path="/user-info/:id" component={UserInfo} />
+        <Route path="/room-list/:id" component={RoomList} />
+        <Route path="/login-register/:posotion" component={LoginRegister} />
         <AdminTemplate exact path="/admin/ManagerRooms" Component={ManagerRooms} />
         <AdminTemplate exact path="/admin/ManagerLocation" Component={ManagerLocation} />
         <AdminTemplate exact path="/admin/ManagerUsers" Component={ManagerUsers} />

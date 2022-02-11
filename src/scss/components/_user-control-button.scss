@@ -1,17 +1,30 @@
 .user-control {
   @include flex(center, space-between);
   padding: 5px 10px;
-  border: 1px solid $bg-white-2;
+  border: 1px solid $bg-white-2 !important;
   border-radius: $border-radius-1;
   box-shadow: $box-shadow;
   transition: box-shadow 0.3s ease;
+  width: max-content;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  position: relative;
   cursor: pointer;
+
+  &.bg-white {
+    background-color: $bg-white-0;
+    color: $color-dark-1;
+  }
 
   &__image {
     width: 35px;
     height: 35px;
     border-radius: 50%;
     overflow: hidden;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   &__icon {
@@ -25,5 +38,25 @@
 
   &:hover {
     box-shadow: $box-shadow-1;
+  }
+
+  &:hover > &__content {
+    transform: scale(1);
+    transition: transform 0.5s $transition-cubic;
+  }
+
+  &__content {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    width: max-content;
+    max-width: 400px;
+    background-color: $bg-white-0;
+    box-shadow: $box-shadow-1;
+    border-radius: $border-radius-1;
+    overflow: hidden;
+    transform-origin: top right;
+    transform: scale(0);
+    transition: transform 0.3s ease 0s;
   }
 }

@@ -16,3 +16,93 @@
     }
   }
 }
+
+.home-wrapper {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-color: black;
+}
+
+.home__slider {
+  height: max-content;
+  width: 80%;
+  margin: 0 auto;
+  padding: 1rem 0;
+
+  &__img {
+    padding-top: 600px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: $border-radius-2;
+
+    @include desktop {
+      padding-top: 450px;
+    }
+
+    @include tablet {
+      padding-top: 700px;
+      position: relative;
+    }
+
+    &__search {
+      display: none;
+      position: absolute;
+      top: 20px;
+      left: 0;
+      width: 100%;
+      transition: all 0.3s ease;
+
+      @include tablet {
+        display: block;
+      }
+
+      &__btn {
+        background-color: $bg-white-0;
+        border-radius: $border-radius-2;
+        padding: 10px 0;
+        width: 90%;
+        margin: 0 auto;
+        cursor: pointer;
+        @include flex(center, center);
+
+        i {
+          font-size: 1.2rem;
+          font-weight: 600;
+          margin-right: 10px;
+          color: $color-primary;
+        }
+
+        span {
+          font-weight: 600;
+        }
+      }
+
+      &.shrink {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        background-color: $bg-white-0;
+      }
+
+      &.shrink > &__btn {
+        background-color: $bg-white-3;
+      }
+    }
+  }
+
+  &__title {
+    position: relative;
+    text-align: center;
+    margin-top: 3rem;
+
+    h1 {
+      color: #fff;
+      font-weight: 600;
+      font-size: 2.5rem;
+    }
+  }
+}

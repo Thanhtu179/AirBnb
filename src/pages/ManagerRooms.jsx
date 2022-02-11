@@ -149,7 +149,7 @@ const ManagerRooms = () => {
       render: (text, room) => {
         return (
           <div className="align-items-center" ragment>
-            <NavLink to={`/rooms/${room._id}`}>
+            <NavLink to={`/room/${room._id}`}>
               <Button shape="round" type="primary" ghost>
                 Chi tiết
               </Button>

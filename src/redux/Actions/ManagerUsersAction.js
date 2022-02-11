@@ -1,6 +1,6 @@
 import { history } from '../../App';
 import { managerUsersService } from "../../services/ManagerUsersService"
-import { LOGIN, SET_ARR_USERS, SET_ARR_USERS_BY_PANIGATION, SET_ERROR_MESSAGE, SET_LOADING_USER, SET_USER_INFO, SET_USER_INFO_BY_ID } from '../Types/ManagerUsersType';
+import { LOGIN, SET_ARR_USERS, SET_ARR_USERS_BY_PANIGATION, SET_AVATAR, SET_ERROR_MESSAGE, SET_LOADING_USER, SET_USER_INFO, SET_USER_INFO_BY_ID } from '../Types/ManagerUsersType';
 import { closeDrawer } from './AdminControlAction';
 
 
@@ -152,4 +152,22 @@ export const setError = (error) => {
     return async (dispatch) => {
         dispatch({ type: SET_ERROR_MESSAGE, error });
     }
+}
+
+export const updateUserAvatar = (avatar) => {
+    return async (dispatch) => {
+        try {
+            const result = await managerUsersService.updateUserInfoAvatar(avatar);
+            if (result.status === 200) {
+                alert('Cập nhật phim thành công!');
+                dispatch(closeDrawer());
+                dispatch(getUserInfoAction())
+            }
+        } catch (error) {
+            alert("Cập nhật không thành công có lỗi")
+            console.log(error);
+        }
+
+    }
+
 }

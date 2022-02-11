@@ -2,7 +2,7 @@ import React from "react";
 
 const Section = (props) => {
   return (
-    <div className={`section ${props.borderTop ? "border-top" : ""}`}>
+    <div className={`section  ${props.borderTop ? "border-top" : ""}`}>
       {props.children}
     </div>
   );

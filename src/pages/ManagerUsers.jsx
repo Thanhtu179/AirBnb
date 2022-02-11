@@ -17,6 +17,7 @@ import { openDrawer } from "../redux/Actions/AdminControlAction";
 
 import AddUser from "../components/managerUsers/AddUser";
 import EditUser from "../components/managerUsers/EditUser";
+import userImg from "../assets/image/user.png";
 
 const { Search } = Input;
 
@@ -85,7 +86,7 @@ const ManagerUsers = () => {
             ) : (
               <img
                 className=""
-                src={`https://www.clipartmax.com/png/middle/97-971514_male-user-help-icon-h%C3%ACnh-%E1%BA%A3nh-d%E1%BA%A5u-nh%C3%A2n-%C4%91%E1%BB%8F.png`}
+                src={userImg}
                 alt="ko hinh"
                 width={35}
                 height={35}
@@ -137,7 +138,7 @@ const ManagerUsers = () => {
       render: (text, user) => {
         return (
           <div className="align-items-center">
-            <NavLink to={`/users/${user._id}`}>
+            <NavLink to={`/user-info/${user._id}`}>
               <Button shape="round" type="primary" ghost>
                 Chi tiết
               </Button>
