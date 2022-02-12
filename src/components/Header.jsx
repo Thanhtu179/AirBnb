@@ -97,7 +97,11 @@ const Header = (props) => {
 
     onSubmit: (values) => {
       if (values.locationId !== "") {
-        history.push(`/room-list/${values.locationId}`);
+        console.log("first", values);
+        history.replace(`/room-list/${values.locationId}`);
+        window.location.reload();
+      } else {
+        alert("Vui long chon dia diem");
       }
     },
   });

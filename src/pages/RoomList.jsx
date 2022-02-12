@@ -28,6 +28,7 @@ const RoomList = (props) => {
   const showModal = () => {
     setIsModalVisible(true);
   };
+  console.log("first", data);
 
   const handleOk = () => {
     setIsModalVisible(false);
