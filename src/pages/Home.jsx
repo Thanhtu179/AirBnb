@@ -7,6 +7,7 @@ import Section, { SectionTitle, SectionBody } from "../components/Section";
 import Grid from "../components/Grid";
 import CardItem from "../components/CardItem";
 import bgHome from "../assets/image/bg-home.jpg";
+import Header from "../components/Header";
 
 const recentLocationList = [
   {
@@ -97,6 +98,7 @@ const Home = () => {
     <Helmet title="Trang chủ">
       <div className="home-wrapper">
         <HeaderHome />
+        {/* <Header /> */}
         <div className="home__slider">
           <div
             className="home__slider__img"
