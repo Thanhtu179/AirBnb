@@ -23,7 +23,7 @@ const AddRoom = (props) => {
   const dispatch = useDispatch();
 
   const onReset = () => {
-    console.log("reset");
+    // console.log("reset");
   };
 
   const handleChangeSwitch = (name) => {
@@ -70,7 +70,6 @@ const AddRoom = (props) => {
       locationId: Yup.string().required("Xin vui lòng chọ địa điểm"),
     }),
     onSubmit: (values) => {
-      // console.log("values", values);
       dispatch(addRoomAction(values));
     },
   });

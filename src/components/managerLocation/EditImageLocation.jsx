@@ -19,7 +19,6 @@ const EditImageLocation = (props) => {
       image: locationData.image,
     },
     onSubmit: (values) => {
-      //   console.log("values", values);
       let formData = new FormData();
       formData.append("location", values.image, values.image.name);
       dispatch(updateLocationAvatar(id, formData));

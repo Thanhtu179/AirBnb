@@ -120,7 +120,9 @@ const Home = () => {
       {/* Location Section */}
       <div className="container">
         <Section>
-          <SectionTitle>Khám phá những điểm đến gần đây</SectionTitle>
+          <SectionTitle>
+            <h2>Khám phá những điểm đến gần đây</h2>
+          </SectionTitle>
           <SectionBody>
             <Grid col={4} lgCol={2} mdCol={1} gap={20}>
               {recentLocationList.map((item, index) => (
@@ -139,7 +141,9 @@ const Home = () => {
       {/* where Section */}
       <div className="container">
         <Section>
-          <SectionTitle>Ở bất cứ đâu</SectionTitle>
+          <SectionTitle>
+            <h2>Ở bất cứ đâu</h2>
+          </SectionTitle>
           <SectionBody>
             <Grid col={4} lgCol={2} mdCol={1} gap={20}>
               {characteristicLocationItems.map((item, index) => (

@@ -97,7 +97,6 @@ const Header = (props) => {
 
     onSubmit: (values) => {
       if (values.locationId !== "") {
-        console.log("first", values);
         history.replace(`/room-list/${values.locationId}`);
         window.location.reload();
       } else {
@@ -109,7 +108,6 @@ const Header = (props) => {
   const handleChangeLocation = (item) => {
     formik.setFieldValue("locationId", item._id);
     formik.setFieldValue("locationName", item.province);
-    // console.log("first", item);
   };
 
   // const handleChangeLocation
@@ -127,7 +125,6 @@ const Header = (props) => {
         const result = await managerLocationService.getAllLocations();
         if (result.status === 200) {
           setArrLocation(result.data);
-          // console.log("first", result.data);
         }
       } catch (error) {
         console.log(error);

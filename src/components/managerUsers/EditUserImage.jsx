@@ -18,7 +18,6 @@ const EditUserImage = (props) => {
       image: userInfoById.image,
     },
     onSubmit: (values) => {
-      // console.log("values", values);
       let formData = new FormData();
       formData.append("avatar", values.image, values.image.name);
       dispatch(updateUserAvatar(formData));

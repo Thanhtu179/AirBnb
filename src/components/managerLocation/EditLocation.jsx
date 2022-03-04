@@ -36,7 +36,6 @@ const EditLocation = (props) => {
       country: Yup.string().required("Quốc gia không được bõ trống"),
     }),
     onSubmit: async (values) => {
-      // console.log("values", values);
       dispatch(updateLocationByIdAction(id, values));
     },
   });

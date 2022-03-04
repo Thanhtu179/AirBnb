@@ -62,7 +62,6 @@ const EditRoom = (props) => {
       description: Yup.string().required("Mô tả không được bỏ trống"),
     }),
     onSubmit: (values) => {
-      // console.log("values", values);
       dispatch(updateRoomByIdAction(id, values));
     },
   });

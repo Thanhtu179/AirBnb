@@ -27,7 +27,7 @@ const UserInfo = (props) => {
   useEffect(() => {
     dispatch(getUserInfoAction(id));
   }, []);
-  console.log("first", props);
+
   return (
     <Helmet title="thong tin ca nhan">
       <DrawerModel

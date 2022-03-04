@@ -48,7 +48,6 @@ const Register = (props) => {
         formik.setFieldError("email", "Email đã được đăng ký");
       } else {
         register(values);
-        // console.log("object", values);
       }
     },
   });
@@ -62,7 +61,6 @@ const Register = (props) => {
       }
     } catch (error) {
       alert(error.response.data.message);
-      // console.log("Error", error);
     }
   };
 

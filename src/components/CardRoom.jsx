@@ -33,7 +33,6 @@ const CardRoom = (props) => {
       try {
         const response = await managerReviewsService.getReviewListByRoomId(id);
         setReviews(response.data);
-        // console.log("reve", response.data);
       } catch (err) {
         console.log(err);
       }

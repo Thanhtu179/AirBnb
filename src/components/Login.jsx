@@ -34,7 +34,6 @@ const Login = (props) => {
         formik.setFieldError("email", "Tài khoản không tồn tại");
       } else {
         dispatch(loginAction(values));
-        // console.log("first", values);
       }
     },
   });

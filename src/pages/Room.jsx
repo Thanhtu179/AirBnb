@@ -95,6 +95,24 @@ const Room = (props) => {
   const [reviews, setReviews] = useState([]);
   const userComemts = reviews.filter((item) => item.userId !== null);
 
+  const [numberUser, setNumberUser] = useState({
+    adult: 0,
+    children: 0,
+    baby: 0,
+    pet: 0,
+  });
+
+  let { children, adult, baby, pet } = numberUser;
+
+  const [numberGuest, setNumberGuest] = useState(1);
+
+  const handleChangeNumberUser = (number, nameId) => {
+    setNumberUser({
+      ...numberUser,
+      [`${nameId}`]: numberUser[`${nameId}`] + number,
+    });
+  };
+
   //Du leiu tren server chi co 1 hinh
   let roomImages = [
     roomInfo.image,
@@ -106,10 +124,8 @@ const Room = (props) => {
 
   let serviceItems = [];
 
-  // console.log("mama", serviceItems[0].icon);?
-
   const onChange = (date, dateString) => {
-    console.log(date, dateString);
+    // console.log(date, dateString);
   };
 
   const renderRateItem = (title, rate, index) => {
@@ -191,7 +207,6 @@ const Room = (props) => {
         const response = await managerRoomsService.getRoomInfo(id);
         setRoomInfo(response.data);
         window.scrollTo(0, 0);
-        console.log("first", response.data);
       } catch (err) {
         console.log(err);
       }
@@ -204,13 +219,17 @@ const Room = (props) => {
       try {
         const response = await managerReviewsService.getReviewListByRoomId(id);
         setReviews(response.data);
-        // console.log("reve", response.data);
       } catch (err) {
         console.log(err);
       }
     };
     getReviewListByRoomId(id);
   }, []);
+
+  // useEffect(() => {
+  //   const total = adult + children + baby;
+  //   setNumberGuest(total);
+  // }, [children, adult, baby, pet]);
 
   return (
     <div>
@@ -387,7 +406,9 @@ const Room = (props) => {
                       >
                         <div className="book-ticket__info__number-user__toggle__title">
                           <h5>Khách</h5>
-                          <p>1 khách</p>
+                          <p>{`${
+                            adult + children + baby
+                          } Khách, ${pet} thú cưng`}</p>
                         </div>
                         <div className="book-ticket__info__number-user__toggle__icon">
                           <i className="bx bx-chevron-down"></i>
@@ -404,9 +425,21 @@ const Room = (props) => {
                               <p>Từ 13 tuổi trở lên</p>
                             </div>
                             <div className="book-ticket__info__number-user__content__menus__item__btns">
-                              <button>-</button>
-                              <span>1</span>
-                              <button>+</button>
+                              <button
+                                onClick={() =>
+                                  handleChangeNumberUser(-1, "adult")
+                                }
+                              >
+                                -
+                              </button>
+                              <span>{adult}</span>
+                              <button
+                                onClick={() =>
+                                  handleChangeNumberUser(1, "adult")
+                                }
+                              >
+                                +
+                              </button>
                             </div>
                           </div>
                           <div className="book-ticket__info__number-user__content__menus__item">
@@ -415,9 +448,21 @@ const Room = (props) => {
                               <p>Độ tuổi 2 - 12</p>
                             </div>
                             <div className="book-ticket__info__number-user__content__menus__item__btns">
-                              <button>-</button>
-                              <span>1</span>
-                              <button>+</button>
+                              <button
+                                onClick={() =>
+                                  handleChangeNumberUser(-1, "children")
+                                }
+                              >
+                                -
+                              </button>
+                              <span>{children}</span>
+                              <button
+                                onClick={() =>
+                                  handleChangeNumberUser(1, "children")
+                                }
+                              >
+                                +
+                              </button>
                             </div>
                           </div>
                           <div className="book-ticket__info__number-user__content__menus__item">
@@ -426,9 +471,21 @@ const Room = (props) => {
                               <p>Dưới 12 tuổi</p>
                             </div>
                             <div className="book-ticket__info__number-user__content__menus__item__btns">
-                              <button>-</button>
-                              <span>1</span>
-                              <button>+</button>
+                              <button
+                                onClick={() =>
+                                  handleChangeNumberUser(-1, "baby")
+                                }
+                              >
+                                -
+                              </button>
+                              <span>{baby}</span>
+                              <button
+                                onClick={() =>
+                                  handleChangeNumberUser(1, "baby")
+                                }
+                              >
+                                +
+                              </button>
                             </div>
                           </div>
                           <div className="book-ticket__info__number-user__content__menus__item">
@@ -437,9 +494,19 @@ const Room = (props) => {
                               <p>Bạn muốn mang theo động vật</p>
                             </div>
                             <div className="book-ticket__info__number-user__content__menus__item__btns">
-                              <button>-</button>
-                              <span>1</span>
-                              <button>+</button>
+                              <button
+                                onClick={() =>
+                                  handleChangeNumberUser(-1, "pet")
+                                }
+                              >
+                                -
+                              </button>
+                              <span>{pet}</span>
+                              <button
+                                onClick={() => handleChangeNumberUser(1, "pet")}
+                              >
+                                +
+                              </button>
                             </div>
                           </div>
                         </div>

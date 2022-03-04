@@ -16,8 +16,8 @@ const CardItem = (props) => {
       ) : null}
       <div className="card-item__content">
         <h4>
-          {props.title.length > 25
-            ? props.title.substring(0, 25) + " ..."
+          {props.title?.length > 25
+            ? props.title?.substring(0, 25) + " ..."
             : props.title}
         </h4>
         {props.description ? <p>{props.description}</p> : null}

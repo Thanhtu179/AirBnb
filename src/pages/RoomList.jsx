@@ -28,7 +28,6 @@ const RoomList = (props) => {
   const showModal = () => {
     setIsModalVisible(true);
   };
-  console.log("first", data);
 
   const handleOk = () => {
     setIsModalVisible(false);
@@ -53,7 +52,7 @@ const RoomList = (props) => {
     const getRoomsByLocation = async (id) => {
       try {
         const response = await managerRoomsService.getRoomListByLocation(id);
-        // console.log("reve", response.data);
+
         setData(response.data);
         window.scrollTo(0, 0);
       } catch (err) {
@@ -67,7 +66,7 @@ const RoomList = (props) => {
     const getLocationInfo = async (id) => {
       try {
         const response = await managerLocationService.getLocationInfo(id);
-        // console.log("reve", response.data);
+
         setLocation(response.data);
         window.scrollTo(0, 0);
       } catch (err) {

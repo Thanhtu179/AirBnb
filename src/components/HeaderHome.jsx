@@ -109,7 +109,6 @@ const HeaderHome = (props) => {
     onSubmit: (values) => {
       if (values.locationId !== "") {
         history.push(`/room-list/${values.locationId}`);
-        // console.log("first", values);
       } else {
         alert("Vui long chon dia diem");
       }
@@ -139,7 +138,6 @@ const HeaderHome = (props) => {
         const result = await managerLocationService.getAllLocations();
         if (result.status === 200) {
           setArrLocation(result.data);
-          // console.log("first", result.data);
         }
       } catch (error) {
         console.log(error);

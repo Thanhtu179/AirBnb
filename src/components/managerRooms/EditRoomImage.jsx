@@ -18,7 +18,6 @@ const EditRoomImage = (props) => {
       image: roomData.image,
     },
     onSubmit: (values) => {
-      // console.log("values", values);
       let formData = new FormData();
       formData.append("room", values.image, values.image.name);
       dispatch(updateAvatarRoomById(id, formData));
